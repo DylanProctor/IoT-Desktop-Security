@@ -1,11 +1,7 @@
 import sys
 import time
 import RPi.GPIO as GPIO 
-from python import pubnub
-from pubnub.pnconfiguration import PNConfiguration
-from pubnub.pubnub import PubNub
-from pubnub.callbacks import SubscribeCallback
-from pubnub.enums import PNOperationType, PNStatusCategory
+
 
 GPIO.setmode(GPIO.BCM)
 
