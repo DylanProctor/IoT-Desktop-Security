@@ -15,7 +15,7 @@ time.sleep(2)
 while True:
 	if GPIO.input(outp):
 		print("Motion Detected")
-		camera.capture("intruder.jpeg")
+		camera.capture("intruder.jpg")
 		time.sleep(3)
 	time.sleep(0.1)
 
