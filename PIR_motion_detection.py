@@ -9,7 +9,7 @@ outp = 23
 
 GPIO.setup(outp, GPIO.IN)
 
-camera = picamera.Picamera()
+camera = picamera.PiCamera()
 
 time.sleep(2)
 while True:
