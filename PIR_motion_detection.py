@@ -9,12 +9,13 @@ outp = 23
 GPIO.setup(outp, GPIO.IN)
 
 
-try:
-	time.sleep(2)
-	while True:
-		if GPIO.input(outp):
-			print("Motion Detected")
-			time.sleep(2)
-		time.sleep(0.1)
-except:
-	GPIO.cleanup()
+
+time.sleep(2)
+while True:
+	if GPIO.input(outp):
+		print("Motion Detected")
+		time.sleep(2)
+	time.sleep(0.1)
+
+
+GPIO.cleanup()
