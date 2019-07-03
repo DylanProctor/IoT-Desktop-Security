@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import picamera
 import sys
 import time
 
@@ -8,13 +9,14 @@ outp = 23
 
 GPIO.setup(outp, GPIO.IN)
 
-
+camera = picamera.Picamera()
 
 time.sleep(2)
 while True:
 	if GPIO.input(outp):
 		print("Motion Detected")
-		time.sleep(2)
+		camera.capture("intruder.jpeg")
+		time.sleep(3)
 	time.sleep(0.1)
 
 
