@@ -22,6 +22,8 @@ pir = 23
 GPIO.setup(pir, GPIO.IN)
 #set up the camera 
 camera = picamera.PiCamera()
+flag = 0
+
 
 def MySubscribeCallback(SubscribeCallback):
 	def status(self, pubnub, status):
@@ -59,14 +61,19 @@ def MySubscribeCallback(SubscribeCallback):
 		pass
 
 	def message(self, pubnub, message):
-		pass
+		if message.message == 'ON':
+			global flag
+			flag = 1
+		elif message.message == 'OFF':
+			global flag
+			flag = 0
 		
 pubnub.add_listener(MySubscribeCallback())
 pubnub.subscribe().channels('ch1').execute()
 
 time.sleep(2)
 while True:
-	if GPIO.input(pir):
+	if GPIO.input(pir) and flag == 1:
 		pubnub.publish().channel('ch1').message("Intruder Detected!").async(publish_callback)
 		print("Motion Detected")
 		time.sleep(3)
