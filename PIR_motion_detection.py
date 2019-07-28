@@ -1,8 +1,6 @@
 import RPi.GPIO as GPIO
-import picamera
 import sys
 import time
-import pycurl, json
 import pubnub
 from pubnub.callbacks import SubscribeCallback
 from pubnub.enums import PNStatusCategory
