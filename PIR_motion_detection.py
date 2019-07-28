@@ -76,7 +76,7 @@ class MySubscribeCallback(SubscribeCallback):
 		# 	global flag
 		# 	flag = 0
 
-pubnub.add_listener(MySubscribeCallback(SubscribeCallback))
+pubnub.add_listener(MySubscribeCallback(SubscribeCallback()))
 pubnub.subscribe().channels('ch1').execute()
 
 time.sleep(2)
