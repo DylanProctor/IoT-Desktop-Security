@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import sys
 import time
-import pycurl, json
 from pubnub.callbacks import SubscribeCallback
 from pubnub.enums import PNStatusCategory
 from pubnub.pnconfiguration import PNConfiguration
@@ -14,13 +13,10 @@ pnconfig.ssl = False
 pubnub = PubNub(pnconfig)
 
 
-
 GPIO.setmode(GPIO.BCM)
 #set the sensor to pin 23
 pir = 23
 GPIO.setup(pir, GPIO.IN)
-#set up the camera 
-camera = picamera.PiCamera()
 flag = 0
 
 
@@ -61,10 +57,8 @@ def MySubscribeCallback(SubscribeCallback):
 
 	def message(self, pubnub, message):
 		if message.message == 'ON':
-			global flag
 			flag = 1
 		elif message.message == 'OFF':
-			global flag
 			flag = 0
 		
 pubnub.add_listener(MySubscribeCallback())
