@@ -3,10 +3,9 @@ import picamera
 import sys
 import time
 import pycurl, json
-
 import pubnub
 from pubnub.callbacks import SubscribeCallback
-from pubnub.enums import PNOperationType, PNStatusCategory
+from pubnub.enums import PNStatusCategory
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 
@@ -15,6 +14,8 @@ pnconfig.subscribe_key = "sub-c-d11e8f9a-9871-11e9-8994-3e832ec25d8b"
 pnconfig.publish_key = "pub-c-964c6e62-8094-417b-a4bd-979dd56a7d52"
 pnconfig.ssl = False
 pubnub = PubNub(pnconfig)
+
+
 
 GPIO.setmode(GPIO.BCM)
 #set the sensor to pin 23
@@ -69,12 +70,12 @@ def MySubscribeCallback(SubscribeCallback):
 			flag = 0
 		
 pubnub.add_listener(MySubscribeCallback())
-pubnub.subscribe().channels('ch1').execute()
+pubnub.subscribe().channels('Ch2').execute()
 
 time.sleep(2)
 while True:
 	if GPIO.input(pir) and flag == 1:
-		pubnub.publish().channel('ch1').message("Intruder Detected!").async(publish_callback)
+		pubnub.publish().channel('Ch1').message("Intruder Detected!").async(publish_callback)
 		print("Motion Detected")
 		time.sleep(3)
 	time.sleep(0.1)
