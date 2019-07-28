@@ -1,10 +1,11 @@
 import RPi.GPIO as GPIO
 import sys
 import time
-from pubnub.callbacks import SubscribeCallback
-from pubnub.enums import PNStatusCategory
+import pubnub
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
+from pubnub.callbacks import SubscribeCallback
+from pubnub.enums import PNOperationType, PNStatusCategory
 
 pnconfig = PNConfiguration()
 pnconfig.subscribe_key = "sub-c-d11e8f9a-9871-11e9-8994-3e832ec25d8b"
@@ -61,7 +62,7 @@ def MySubscribeCallback(SubscribeCallback):
 		elif message.message == 'OFF':
 			flag = 0
 		
-pubnub.add_listener(MySubscribeCallback(SubscribeCallback))
+pubnub.add_listener(MySubscribeCallback())
 pubnub.subscribe().channels('Ch2').execute()
 
 time.sleep(2)
