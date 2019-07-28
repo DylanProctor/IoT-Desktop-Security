@@ -71,7 +71,7 @@ while True:
 		pubnub.publish().channel('Ch1').message("Intruder Detected!").async(publish_callback)
 		print("Motion Detected")
 		time.sleep(5)
-	time.sleep(0.1)
+	
 
 
 GPIO.cleanup()
