@@ -84,7 +84,7 @@ pubnub.subscribe().channels('ch1').execute()
 time.sleep(2)
 while True:
 	if GPIO.input(pir): #and flag == 1:
-		pubnub.publish().channel('Ch1').message("Intruder Detected!").async(publish_callback)
+		pubnub.publish().channel('Ch1').message("Intruder Detected!").sync()
 		print("Motion Detected")
 		time.sleep(5)
 	time.sleep(0.1)
