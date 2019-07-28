@@ -68,13 +68,13 @@ class MySubscribeCallback(SubscribeCallback):
     def presence(self, pubnub, presence):
         pass  # handle incoming presence data
  
-     def message(self, pubnub, message):
-         if message.message == 'ON':
-         	global flag
-         	flag = 1
-         elif message.message == 'OFF':
-	 		global flag
-	 		flag = 0
+    #def message(self, pubnub, message):
+        # if message.message == 'ON':
+        # 	global flag
+        # 	flag = 1
+        # elif message.message == 'OFF':
+		# 	global flag
+		# 	flag = 0
 
 pubnub.add_listener(MySubscribeCallback())
 pubnub.subscribe().channels('ch1').execute()
