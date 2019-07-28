@@ -21,7 +21,7 @@ GPIO.setup(pir, GPIO.IN)
 flag = 0
 
 
-def MySubscribeCallback(SubscribeCallback):
+class MySubscribeCallback(SubscribeCallback):
 	def status(self, pubnub, status):
 		pass
 		
