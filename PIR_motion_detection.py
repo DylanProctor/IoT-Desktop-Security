@@ -64,14 +64,13 @@ class MySubscribeCallback(SubscribeCallback):
         else:
             pass
             # Encountered unknown status type
- 	
 	def presence(self, pubnub, presence):
-
+		pass
 	def message(self, pubnub, message):
 		global flag
-        if message.message == 'ON':
+		if message.message == 'ON':
 			flag = 1
-        elif message.message == 'OFF':
+		elif message.message == 'OFF':
 			flag = 0
 
 pubnub.add_listener(MySubscribeCallback())
