@@ -71,9 +71,9 @@ class MySubscribeCallback(SubscribeCallback):
     def message(self, pubnub, message):
 		global flag
         if message.message == 'ON':
-         	flag = 1
+			flag = 1
         elif message.message == 'OFF':
-		 	flag = 0
+			flag = 0
 
 pubnub.add_listener(MySubscribeCallback())
 pubnub.subscribe().channels('Ch2').execute()
