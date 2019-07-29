@@ -64,11 +64,11 @@ class MySubscribeCallback(SubscribeCallback):
         else:
             pass
             # Encountered unknown status type
- 
-    def presence(self, pubnub, presence):
-        pass  # handle incoming presence data
- 
-    def message(self, pubnub, message):
+ 	
+	def presence(self, pubnub, presence):
+   		pass # handle incoming presence data
+		   
+	def message(self, pubnub, message):
 		global flag
         if message.message == 'ON':
 			flag = 1
