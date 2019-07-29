@@ -67,11 +67,11 @@ class MySubscribeCallback(SubscribeCallback):
 	def presence(self, pubnub, presence):
 		pass
 	def message(self, pubnub, message):
-		global flag
-		if message.message == 'ON':
-			flag = 1
-		elif message.message == 'OFF':
-			flag = 0
+		# global flag
+		# if message.message == 'ON':
+		# 	flag = 1
+		# elif message.message == 'OFF':
+		# 	flag = 0
 
 pubnub.add_listener(MySubscribeCallback())
 pubnub.subscribe().channels('Ch2').execute()
@@ -81,7 +81,7 @@ def publish_callback(result, status):
 
 time.sleep(2)
 while True:
-	if GPIO.input(pir) and flag == 1:
+	if GPIO.input(pir): #and flag == 1:
 		pubnub.publish().channel('Ch1').message("Intruder Detected!").pn_async(publish_callback)
 		print("Motion Detected")
 		time.sleep(5)
