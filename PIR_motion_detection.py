@@ -69,12 +69,10 @@ class MySubscribeCallback(SubscribeCallback):
         pass  # handle incoming presence data
  
     def message(self, pubnub, message):
-
+		global flag
         if message.message == 'ON':
-    		global flag
          	flag = 1
         elif message.message == 'OFF':
-			global flag
 		 	flag = 0
 
 pubnub.add_listener(MySubscribeCallback())
