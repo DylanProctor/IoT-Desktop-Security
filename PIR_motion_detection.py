@@ -66,8 +66,7 @@ class MySubscribeCallback(SubscribeCallback):
             # Encountered unknown status type
  	
 	def presence(self, pubnub, presence):
-   		pass # handle incoming presence data
-		   
+
 	def message(self, pubnub, message):
 		global flag
         if message.message == 'ON':
