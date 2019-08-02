@@ -1,32 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
 import PubNubReact from 'pubnub-react';
 import Modal from "react-native-modal";
 
 
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style = {styles.container}>
-        <Text style = {styles.heading}>
-          Welcome to IoT Desktop Security
-        </Text>
-        <TouchableOpacity
-          style = {styles.button}
-          onPress={() => this.props.navigation.navigate('Details')}
-        >
-          <Text style = {styles.buttonText}>
-            Details
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-}
-
-
-class DetailsScreen extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.pubnub = new PubNubReact({
@@ -41,23 +19,43 @@ class DetailsScreen extends React.Component {
     this.pubnub.getMessage('Ch1');
   }
 
+  state = {
+    isModalVisible: false
+  };
+
+  toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible});
+  };
+
+
   render() {
     const messages = this.pubnub.getMessage('Ch1');
     return (
       <View style = {styles.container}>
-        <Text style = {styles.heading}>
-          Press "ON" to enable the motion sensor and "OFF" to diable the motion sensor
-        </Text>
         <TouchableOpacity
-          style = {styles.button}
-          onPress={() => this.props.navigation.navigate('Home')}
+          style = {styles.button2}
+          onPress={this.toggleModal}
         >
           <Text style = {styles.buttonText}>
-            Home
+            Information 
           </Text>
+          <Modal 
+            isVisible = {this.state.isModalVisible}
+          >
+            <View style={styles.modalContent}>
+              <Text style = {styles.heading}>
+                Welcome to IoT Desktop Security!
+              </Text>
+              <Text style= {styles.heading}>
+                To arm your motion sensor please tap "ON", and
+                to disarm your motion sensor please tap "OFF"
+              </Text>
+              <Button title="Back" onPress={this.toggleModal} />
+            </View>
+          </Modal>
         </TouchableOpacity>
         <TouchableOpacity
-          style = {styles.button}
+          style = {styles.button1}
           onPress={() => this.pubnub.publish({
             message: 'ON',
             channel: 'Ch2'
@@ -68,7 +66,7 @@ class DetailsScreen extends React.Component {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style = {styles.button}
+          style = {styles.button1}
           onPress={() => this.pubnub.publish({
             message: 'OFF',
             channel: 'Ch2'
@@ -85,65 +83,62 @@ class DetailsScreen extends React.Component {
 }
 
 
-const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen,
-    },
-    Details: {
-      screen: DetailsScreen,
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-
-const AppContainer = createAppContainer(RootStack);
-
-export default class App extends React.Component{
-  render() {
-    return <AppContainer/>;
-  }
-}
-
-
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF'
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  modalContent:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+    padding: 20,
   },
   heading: {
-      fontSize: 25,
-      textAlign: 'center',
-      margin: 10
+    fontSize: 25,
+    textAlign: 'center',
+    margin: 10
   },
   buttonText:{
-      fontSize: 20,
-      textAlign: 'center'
+    fontSize: 20,
+    textAlign: 'center'
   },
   alert: {
-      fontSize: 30,
-      textAlign: 'center',
-      color: 'red'
+    fontSize: 30,
+    textAlign: 'center',
+    color: 'red'
   },
-  button: {
-      textAlign: 'center',
-      padding: 10,
-      marginVertical: 10, 
-      shadowColor: 'rgba(0,0,0, .4)', // IOS
-      shadowOffset: { height: 1, width: 1 }, // IOS
-      shadowOpacity: 1, // IOS
-      shadowRadius: 1, //IOS
-      backgroundColor: '#DDDDDD',
-      elevation: 2, // Android
-      height: 50,
-      width: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
-      flexDirection: 'row',     
+  button1: {
+    textAlign: 'center',
+    padding: 10,
+    marginVertical: 10, 
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 }, 
+    shadowOpacity: 1,
+    shadowRadius: 1,
+    backgroundColor: '#DDDDDD',
+    height: 50,
+    width: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',     
+  },
+  button2:{
+    textAlign: 'center',
+    padding: 10,
+    marginVertical: 10, 
+    shadowColor: 'rgba(0,0,0, .4)',
+    shadowOffset: { height: 1, width: 1 },
+    shadowOpacity: 1, 
+    shadowRadius: 1, 
+    backgroundColor: '#DDDDDD',
+    elevation: 2,
+    height: 50,
+    width: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   }
 });
