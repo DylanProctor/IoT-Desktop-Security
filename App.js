@@ -8,8 +8,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.pubnub = new PubNubReact({
-      publishKey: "YOUR-PUBLISH-KEY",
-      subscribeKey: "YOUR-SUBSCRIBE-KEY"
+      publishKey: "PUBLISH-KEY",
+      subscribeKey: "SUBSCRIBE-KEY"
     });
     this.pubnub.init(this);
   }
