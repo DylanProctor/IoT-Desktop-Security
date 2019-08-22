@@ -56,7 +56,6 @@ class MySubscribeCallback(SubscribeCallback):
 pubnub.add_listener(MySubscribeCallback())
 pubnub.subscribe().channels('Ch2').execute()
 
-
 def publish_callback(result, status):
 	pass
 
