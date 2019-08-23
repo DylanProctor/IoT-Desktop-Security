@@ -8,8 +8,8 @@ from pubnub.callbacks import SubscribeCallback
 from pubnub.enums import PNOperationType, PNStatusCategory
 
 pnconfig = PNConfiguration()
-pnconfig.subscribe_key = "sub-c-d11e8f9a-9871-11e9-8994-3e832ec25d8b"
-pnconfig.publish_key = "pub-c-964c6e62-8094-417b-a4bd-979dd56a7d52"
+pnconfig.subscribe_key = "SUBSCRIBE_KEY"
+pnconfig.publish_key = "PUBLISH_KEY"
 pnconfig.ssl = False
 pubnub = PubNub(pnconfig)
 
