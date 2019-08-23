@@ -1,5 +1,5 @@
 # IoT-Desktop-Security
-With a raspberry Pi, a PIR sensor, and PubNub's publishing and subscribing technology, you can create your own desktop security app. Once properly programmed, the motion sensor will be able to detect an intruder, and will then publish a message directly to the app. There is also potential to configure additional features, such as a raspberry Pi camera to photograph the intruder, or a speaker to sound once the intruder is detected.
+With a raspberry Pi, a PIR sensor, and PubNub's publishing and subscribing technology, you can create your own desktop security app. Once properly programmed, the motion sensor will be able to detect an intruder, and will then publish a message directly to the app. There is also potential to configure additional features, such as a raspberry Pi camera to photograph the intruder.
 
 ![](mgs.gif)
 
