@@ -12,7 +12,7 @@ With a raspberry Pi, a PIR sensor, and PubNub's publishing and subscribing techn
 * Things like react-native-modal or react-navigation installed and link if you wanted to intergrate that into your app
 
 # How To Run:
-1.) First, you need to make sure you install the latest version of Node. Type this command `brew install node` in your terminal
+1.) First, you need to make sure you install the latest version of Node and watchman. Type this command `brew install node` and `brew install watchman` in your terminal
 
 2.) Then, install react native CLI with `npm install -g react-native-cli` in your terminal.
 
