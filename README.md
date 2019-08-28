@@ -8,6 +8,7 @@ With a raspberry Pi, a PIR sensor, and PubNub's publishing and subscribing techn
 * PubNub's sdk's for python and react installed
 * React Native CLI
 * Node 
+* watchman
 * Xcode and iOS simulator
 * Things like react-native-modal or react-navigation installed and link if you wanted to intergrate that into your app
 
