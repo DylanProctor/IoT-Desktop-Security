@@ -61,11 +61,22 @@ pubnub.subscribe().channels('Ch2').execute()
 def publish_callback(result, status):
 	pass
 
+
+
 time.sleep(2)
 while True:
 	if GPIO.input(pir) and flag == 1:
+		dictionary = {
+			"to" : 'RECIEVING PHONE NUMEBR',
+			"body" : "Intruder detected!"
+		}
+
+		pubnub.publish().channel('clicksend-text').message(dictionary).pn_async(publish_callback)
+		
 		pubnub.publish().channel('Ch1').message("Intruder Detected!").pn_async(publish_callback)
+
 		print("Intruder Detected!")
+
 		time.sleep(5)
 	time.sleep(0.1)
 
